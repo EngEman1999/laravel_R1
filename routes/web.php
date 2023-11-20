@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\examplecontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+  return view('welcome');
+});
 Route::get('/About', function () {
   return 'welcome , This is my first project in the laravel';
 });
@@ -49,8 +53,30 @@ Route::prefix('Training')->group(function () {
     return 'Logistics';
   });
 });
+// To go to the home page if there is an error in the link للتوجه للصفحة الرئيسية فى حالة وجود خطا فى اللينك
+Route::fallback(function() {
+  return redirect('/');
+});
+//To display a specific page in the views //لعرض صفحة معينة موجودة فى ال viewes 
+Route::get('cv', function(){
+  return view('cv');
+});
 
+Route::get('login', function(){
+  return view('login');
+});
+  
+Route::post('receive', function() {
+  return 'data received';
+  })->name('receive');
+//test3
+Route::get('addCar', function(){
+  return view('addCar');
+});
 
+Route::post('cars', function() {
+  return 'added car in db';
+})->name('cars');
 /*
 Route::get('/user/{name}/{age?}', function ($name , $age=0) {
     $m = 'The username is: ' . $name;
@@ -92,4 +118,5 @@ Route::prefix('product')->group(function () {
         
     });
 */
+Route::get('test1', [examplecontroller::class,'test1']);
 
