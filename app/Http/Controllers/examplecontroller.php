@@ -16,6 +16,6 @@ class examplecontroller extends Controller
 
 
     public function cars(Request $request){
-     return'added car in db as' . $request['title']; //or $request->title;
+     return'added car in db as' . $request['cartitle']; //or $request->cartitle;
     }
 }

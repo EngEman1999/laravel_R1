@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\examplecontroller;
-
+use App\Http\Controllers\Carcontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,11 +69,8 @@ Route::get('login', function(){
 Route::post('receive', function() {
   return 'data received';
   })->name('receive');
-//test3
-Route::get('addCar', [examplecontroller::class,'addCar']);
-Route::post('cars', [examplecontroller::class,'cars'])->name('cars');
 
-/*
+/*insertcar
 Route::get('/user/{name}/{age?}', function ($name , $age=0) {
     $m = 'The username is: ' . $name;
     if($age > 0){
@@ -115,3 +112,10 @@ Route::prefix('product')->group(function () {
     });
 */
 Route::get('test1', [examplecontroller::class,'test1']);
+//test3
+/*
+Route::get('addCar', [examplecontroller::class,'addCar']);
+Route::post('cars', [examplecontroller::class,'cars'])->name('cars');
+*/
+Route::post('storecar', [Carcontroller::class,'store'])->name('storecar');
+Route::get('addcar', [Carcontroller::class,'create']);
