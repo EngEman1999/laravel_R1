@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\examplecontroller;
 use App\Http\Controllers\Carcontroller;
+use App\Http\Controllers\NewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -119,3 +120,7 @@ Route::post('cars', [examplecontroller::class,'cars'])->name('cars');
 */
 Route::post('storecar', [Carcontroller::class,'store'])->name('storecar');
 Route::get('addcar', [Carcontroller::class,'create']);
+
+//task4
+Route::post('storenews', [Newcontroller::class,'store'])->name('storenews');
+Route::get('addnews', [Newcontroller::class,'create']);
