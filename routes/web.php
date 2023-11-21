@@ -70,13 +70,9 @@ Route::post('receive', function() {
   return 'data received';
   })->name('receive');
 //test3
-Route::get('addCar', function(){
-  return view('addCar');
-});
+Route::get('addCar', [examplecontroller::class,'addCar']);
+Route::post('cars', [examplecontroller::class,'cars'])->name('cars');
 
-Route::post('cars', function() {
-  return 'added car in db';
-})->name('cars');
 /*
 Route::get('/user/{name}/{age?}', function ($name , $age=0) {
     $m = 'The username is: ' . $name;
@@ -119,4 +115,3 @@ Route::prefix('product')->group(function () {
     });
 */
 Route::get('test1', [examplecontroller::class,'test1']);
-
