@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\examplecontroller;
 use App\Http\Controllers\Carcontroller;
 use App\Http\Controllers\NewController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,7 +121,11 @@ Route::post('cars', [examplecontroller::class,'cars'])->name('cars');
 */
 Route::post('storecar', [Carcontroller::class,'store'])->name('storecar');
 Route::get('addcar', [Carcontroller::class,'create']);
+Route::get('cars', [Carcontroller::class,'index']);
+Route::get('editcar/{id}', [Carcontroller::class,'edit'])->name('editcar');
+Route::put("updatecar/{id}", [Carcontroller::class,"update"])->name('updatecar');
 
 //task4
 Route::post('storenews', [Newcontroller::class,'store'])->name('storenews');
 Route::get('addnews', [Newcontroller::class,'create']);
+
