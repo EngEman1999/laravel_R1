@@ -125,7 +125,9 @@ Route::get('cars', [Carcontroller::class,'index']);
 Route::get('editcar/{id}', [Carcontroller::class,'edit'])->name('editcar');
 Route::put("updatecar/{id}", [Carcontroller::class,"update"])->name('updatecar');
 
-//task4
+//task4 &5
 Route::post('storenews', [Newcontroller::class,'store'])->name('storenews');
 Route::get('addnews', [Newcontroller::class,'create']);
-
+Route::get('news', [Newcontroller::class,'index']);
+Route::get('editNews/{id}', [Newcontroller::class,'edit'])->name('editNews');
+Route::put("updatenews/{id}", [Newcontroller::class,"update"])->name('updatenews');
