@@ -133,3 +133,4 @@ Route::get('addnews', [Newcontroller::class,'create']);
 Route::get('news', [Newcontroller::class,'index']);
 Route::get('editNews/{id}', [Newcontroller::class,'edit'])->name('editNews');
 Route::put("updatenews/{id}", [Newcontroller::class,"update"])->name('updatenews');
+Route::get('newsdetails/{id}', [Newcontroller::class,'show'])->name('newsdetails');

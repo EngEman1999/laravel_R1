@@ -47,7 +47,8 @@ class Newcontroller extends Controller
      */
     public function show(string $id)
     {
-        //
+        $News = News::findOrFail($id);
+        return view('newsdetails', compact('News'));
     }
 
     /**

@@ -34,6 +34,7 @@
             @endif
             </td>
             <td><a href="editNews/{{ $data->id }}">Edit</a></td>
+            <td><a href="newsdetails/{{ $data->id }}">show</a></td>
       </tr>
       @endforeach
     </tbody>
