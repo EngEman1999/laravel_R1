@@ -20,6 +20,8 @@
         <th>content</th>
         <th>Published</th>
         <th>ُedit</th>
+        <th>show</th>
+        <th>delete</th>
       </tr>
     </thead>
     <tbody>
@@ -34,8 +36,10 @@
             @endif
             </td>
             <td><a href="editcar/{{ $data->id }}">Edit</a></td>
+            <td><a href="showcar/{{ $data->id }}">show</a></td>
+            <td><a href="deletecar/{{ $data->id }}">delete</a></td>
       </tr>
-      @endforeach
+   @endforeach
     </tbody>
   </table>
 </div>

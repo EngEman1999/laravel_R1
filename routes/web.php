@@ -124,6 +124,8 @@ Route::get('addcar', [Carcontroller::class,'create']);
 Route::get('cars', [Carcontroller::class,'index']);
 Route::get('editcar/{id}', [Carcontroller::class,'edit'])->name('editcar');
 Route::put("updatecar/{id}", [Carcontroller::class,"update"])->name('updatecar');
+Route::get("showcar/{id}", [Carcontroller::class,"show"])->name('showcar');
+Route::get("deletecar/{id}", [Carcontroller::class,"destroy"])->name('deletecar');
 
 //task4 &5
 Route::post('storenews', [Newcontroller::class,'store'])->name('storenews');
