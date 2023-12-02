@@ -126,6 +126,8 @@ Route::get('editcar/{id}', [Carcontroller::class,'edit'])->name('editcar');
 Route::put("updatecar/{id}", [Carcontroller::class,"update"])->name('updatecar');
 Route::get("showcar/{id}", [Carcontroller::class,"show"])->name('showcar');
 Route::get("deletecar/{id}", [Carcontroller::class,"destroy"])->name('deletecar');
+Route::get('trashed',[CarController::class, 'trashed']);
+Route::get('restoreCar/{id}',[CarController::class, 'restore']);
 
 //task4 &5
 Route::post('storenews', [Newcontroller::class,'store'])->name('storenews');
@@ -134,3 +136,5 @@ Route::get('news', [Newcontroller::class,'index']);
 Route::get('editNews/{id}', [Newcontroller::class,'edit'])->name('editNews');
 Route::put("updatenews/{id}", [Newcontroller::class,"update"])->name('updatenews');
 Route::get('newsdetails/{id}', [Newcontroller::class,'show'])->name('newsdetails');
+Route::get('trashed',[Newcontroller::class, 'trashed']);
+Route::get('restorenews/{id}',[Newcontroller::class, 'restore']);

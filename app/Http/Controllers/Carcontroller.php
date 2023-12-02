@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
-
+use Symfony\Component\HttpFoundation\Test\Constraint\ResponseIsRedirected;
 
 class Carcontroller extends Controller
 {
-    private $columns = ['cartitle','price','description','published'];
+    private $columns = ['cartitle','description','published'];
+
     /**
      * Display a listing of the resource.
      */
@@ -31,7 +32,7 @@ class Carcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $cars =  new Car();
+       /* $cars =  new Car();
         $cars ->cartitle = $request->cartitle;
         $cars ->price = $request->price;
         $cars ->description = $request->description;
@@ -41,7 +42,17 @@ class Carcontroller extends Controller
             $cars ->Published = false;
         }
         $cars -> save();
-        return 'Added Successfully';
+        return 'Added Successfully';*/
+        $request->validate([
+            'cartitle'=>'required|string|max:50',
+            'description'=>'required|string',
+        ]);
+
+        $data = $request->only($this->columns);
+        $data['published'] = isset($data['published'])? true : false;
+
+        Car::create($data);
+        return 'done';
     }
 
     /**
@@ -86,5 +97,15 @@ class Carcontroller extends Controller
         Car::where('id', $id)->delete();
         return 'deleted';
 
+    }
+    public function trashed(){
+        $cars = Car::onlyTrashed()->get();
+        return view('trashed', compact('cars'));
+    }
+
+    public function restore(string $id): RedirectResponse
+    {
+        Car::where('id', $id)->restore();
+        return redirect('cars');
     }
 }

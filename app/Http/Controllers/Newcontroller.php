@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use Symfony\Component\HttpFoundation\Test\Constraint\ResponseIsRedirected;
 
 class Newcontroller extends Controller
 {
@@ -73,6 +74,18 @@ class Newcontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        News::where('id', $id)->delete();
+        return 'deleted';
+
+    }
+    public function trashed(){
+        $News = News::onlyTrashed()->get();
+        return view('trashed', compact('News'));
+    }
+
+    public function restore(string $id): RedirectResponse
+    {
+        News::where('id', $id)->restore();
+        return redirect('News');
     }
 }
