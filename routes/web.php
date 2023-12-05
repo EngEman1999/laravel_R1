@@ -117,8 +117,13 @@ Route::get('test1', [examplecontroller::class,'test1']);
 //test3
 /*
 Route::get('addCar', [examplecontroller::class,'addCar']);
-Route::post('cars', [examplecontroller::class,'cars'])->name('cars');
+Route::post('cars', [::class,'cars'])->name('cars');
 */
+Route::get('showUpload',[examplecontroller::class, 'showUpload']);
+
+Route::post('upload',[examplecontroller::class, 'upload'])->name('upload');
+
+
 Route::post('storecar', [Carcontroller::class,'store'])->name('storecar');
 Route::get('addcar', [Carcontroller::class,'create']);
 Route::get('cars', [Carcontroller::class,'index']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Traits\Common;
 use Symfony\Component\HttpFoundation\Test\Constraint\ResponseIsRedirected;
 
 class Carcontroller extends Controller
@@ -42,7 +43,7 @@ class Carcontroller extends Controller
             $cars ->Published = false;
         }
         $cars -> save();
-        return 'Added Successfully';*/
+        return 'Added Successfully';
         $request->validate([
             'cartitle'=>'required|string|max:50',
             'description'=>'required|string',
@@ -53,6 +54,37 @@ class Carcontroller extends Controller
 
         Car::create($data);
         return 'done';
+    }*/
+    // $cars = new Car;
+        // $cars->cartitle = $request->title;
+        // $cars->description = $request->description;
+        // $data = $request->only($this->columns);
+        // $data['published'] = isset($data['published'])? true : false;
+        $messages=[
+            'cartitle.required'=>'Title is required',
+            'description.required'=> 'should be text',
+        ];
+
+        $data = $request->validate([
+            'cartitle'=>'required|string',
+            'description'=>'required|string',
+            'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+        ], $messages);
+
+        $fileName = $this->uploadFile($request->image, 'assets/images');
+        $data['image']= $fileName;
+        $data['published'] = isset($request['published']);
+        Car::create($data);
+
+        return 'done';
+
+        // if(isset($request->published)){
+        //     $cars->published = true;
+        // }else{
+        //     $cars->published = false;
+        // }
+        // $cars->save();
+        
     }
 
     /**
