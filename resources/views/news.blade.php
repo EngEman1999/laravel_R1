@@ -30,6 +30,13 @@
     <div class="checkbox">
       <label><input type="checkbox" name="Published"> Published</label>
     </div>
+    <div class="form-group">
+      <label for="image">Image:</label>
+      <input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}">
+     @error('image')
+     {{ $message }}
+     @enderror
+    </div>
     <button type="submit" class="btn btn-default">Add</button>
   </form>
 </div>

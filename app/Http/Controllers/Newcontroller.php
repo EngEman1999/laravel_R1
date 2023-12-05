@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Traits\Common;
 use Symfony\Component\HttpFoundation\Test\Constraint\ResponseIsRedirected;
 
 class Newcontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $columns = ['newstitle','content', 'author' ,'image' ,'published'];
     public function index()
     {
         $News = News::get();
@@ -30,7 +29,7 @@ class Newcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $News =  new News();
+       /* $News =  new News();
         $News ->newstitle = $request->newstitle;
         $News ->content = $request->content;
         $News ->author = $request->author;
@@ -41,6 +40,24 @@ class Newcontroller extends Controller
         }
         $News -> save();
         return 'Added Successfully';
+        */
+        $messages=[
+            'newstitle.required'=>'Title is required',
+            'description.required'=> 'should be text',
+        ];
+
+        $data = $request->validate([
+            'newstitle'=>'required|string',
+            'description'=>'required|string',
+            'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+        ], $messages);
+
+        $fileName = $this->uploadFile($request->image, 'assets/images');
+        $data['image']= $fileName;
+        $data['published'] = isset($request['published']);
+        News::create($data);
+
+        return 'done';
     }
 
     /**
